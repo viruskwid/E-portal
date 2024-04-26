@@ -1,28 +1,46 @@
-<div style="height: auto;" class="d-flex flex-column mt-5 align-items-center justify-content-center ">
+<div style="height: 110vh;" class="d-flex flex-column mt-5 align-items-center  ">
     <h2 class="mt-5 text-center ">All Waste Reports</h2>
 <div class="container-fluid mb-5 ">
-    
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white ">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Waste Image</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card shadow border-0 " style="width: auto;">
+            <img  [src]="SERVER_URL + '/' + sub.image" class="card-img-top rounded " [alt]="sub.type">
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
         <table class="table border text-center ">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">REPORTED BY</th>
-                <th scope="col">LOCATION</th>
-                <th scope="col">DATE</th>
-                <th scope="col">STATUS</th>
-                <th scope="col">ACTION</th>
+            <thead class="bg-success ">
+              <tr class="bg-success ">
+                <th scope="col" class="border bg-success text-white ">ID</th>
+                <th scope="col" class="border bg-success text-white ">REPORTED BY</th>
+                <th scope="col" class="border bg-success text-white ">LOCATION</th>
+                <th scope="col" class="border bg-success text-white ">DATE</th>
+                <th scope="col" class="border bg-success text-white ">IMAGE</th>
+                <th scope="col" class="border bg-success text-white ">STATUS</th>
+                <th scope="col" class="border bg-success text-white ">ACTION</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th class="border ">1</th>
-                <th class="border">Amal</th>
-                <th class="border">Aluva</th>
-                <th class="border ">23/45/67</th>
+              <tr *ngFor="let waste of wasteData ; let i = index">
+                <th class="border ">{{i+1}}</th>
+                <th class="border">{{waste.username}}</th>
+                <th class="border">{{waste.location}}</th>
+                <th class="border ">{{waste.date}}</th>
+                <th><button type="button" class="btn btn-outline-dark " data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="details(waste)">view</button></th>
                 <th class="border">cleared</th>
                 <th class="border "><button class="btn btn-success ">Collect</button></th>
               </tr>
             </tbody>
           </table>
-</div>
+
 </div>

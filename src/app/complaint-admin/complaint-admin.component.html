@@ -1,18 +1,60 @@
-<div style="height: auto;" class="d-flex flex-column mt-5 align-items-center justify-content-center ">
+<div style="height: 140vh;" class="d-flex flex-column mt-5 ">
     <h2 class="mt-5 text-center ">All Complaint Reports</h2>
-    <div class="row mb-5">
-        <div class="col-lg-3 mt-5">
-            <div class="card mt-5 p-3 border-dark" style="width: 350px;"> 
-                <div class="card-body">
-                    <h4>Heading</h4>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-                <div class="d-flex  justify-content-end  align-items-start">
-                    <button class="btn btn-danger me-3">Reject</button>
-                    <button class="btn btn-info me-3">Pending</button>
-                    <button class="btn btn-success me-3">Completed</button>
-                </div>
-              </div>
+    <!-- modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Complaint Details</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card shadow border-0 " style="width: auto;">
+                    <img  [src]="SERVER_URL + '/' + sub.image" class="card-img-top rounded " [alt]="sub.subject">
+                    <h4 class="text-center mt-3">{{sub.subject}}</h4>
+                    <div class="card-body mt-3">
+                      <p class="card-text fs-5 fw-bold text-center  ">{{sub.complaint}}</p>
+                    </div>
+                  </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button class="btn btn-danger me-3">Reject</button>
+              <button class="btn btn-info me-3">Pending</button>
+              <button (click)="updateStatus(sub.complaintId)" class="btn btn-success me-3">Completed</button>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
+
+   <div class="w-100 d-flex justify-content-center align-items-center mb-5">
+    <table class="w-100 shadow border table  table-responsive mb-5 rounded ">
+        <thead class="shadow border text-center mb-5 bg-success text-light ">
+            <th class="border shadow ">C No.</th>
+            <th  class="border shadow ">Complaint ID</th>
+            <th  class="border shadow ">Subject</th>
+            <th  class="border shadow ">User Name</th>
+            <th  class="border shadow ">User ID</th>
+            <th  class="border shadow ">Action</th>
+        </thead>
+        <tbody class="mt-5">
+            <tr *ngFor="let complaint of allcomplaints ; let i = index" class=" text-center  border mt-3">
+                <td class="border-2">{{i+1}}</td>
+                <td class="border-2 ">{{complaint.complaintId}}</td>
+                <td class="border-2">{{complaint.subject}}</td>
+                <td class="border-2 b">{{complaint.username}}</td>
+                <td class="border-2">{{complaint.userId}}</td>
+                <td class="border-2 mt-3 "><button type="button" class="btn btn-outline-dark " data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="details(complaint)">View More</button></td>
+            </tr>
+        </tbody>
+        <thead class="shadow border text-center mb-5 bg-success text-light ">
+            <th class=" shadow text-success ">a</th>
+            <th  class=" shadow "></th>
+            <th  class=" shadow "></th>
+            <th  class="shadow "></th>
+            <th  class=" shadow "></th>
+            <th  class="shadow "></th>
+        </thead>
+    </table>
+   </div>
 </div>

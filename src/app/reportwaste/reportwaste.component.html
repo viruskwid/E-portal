@@ -6,17 +6,23 @@
                 <img width="800px" height="500px" class="me-5" src="https://cdni.iconscout.com/illustration/premium/thumb/waste-management-2974927-2477357.png" alt="">
             </div>
             <div class="col-lg-6">
-                <form class="p-5  shadow  rounded">
+                <form [formGroup]="wasteReport" class="p-5  shadow  rounded">
                     <h3 class="text-center text-capitalize ">Waste Reporting</h3>
                     <div class="mb-3">
                          <label for="subject">Location</label>
                          <div class="d-flex ">
-                            <input class="form-control" type="text" name="location" id="location"><button class="btn btn-success ms-2"><i class="fa-solid fa-location-dot"></i></button>
+                            <input formControlName="location"  class="form-control" type="text" name="location" id="location"><button class="btn btn-success ms-2"><i class="fa-solid fa-location-dot"></i></button>
                          </div>
                     </div>
                     <div class="mb-3">
-                         <label for="subject">complaint</label>
-                         <select class="form-select" aria-label="Default select example">
+                        <label for="subject">Date</label>
+                        <div class="d-flex ">
+                           <input formControlName="date"  class="form-control" type="date" name="date" id="date">
+                        </div>
+                   </div>
+                    <div class="mb-3">
+                         <label for="subject">Waste Type</label>
+                         <select formControlName="type" name="type" class="form-select" aria-label="Default select example">
                             <option selected>Issue Type</option>
                             <option value="Illegal waste disposal">Illegal waste disposal</option>
                             <option value="Electronic waste">Electronic waste</option>
@@ -25,10 +31,10 @@
                     </div>
                     <div class="mb-4">
                         <label for="subject">If any images</label>
-                        <input class="form-control" type="file" name="iamge" id="image">
+                        <input (change)="imageUpload($event)" name="image"   class="form-control" type="file" id="image">
                    </div>
                    <div class="text-center ">
-                    <Button class="btn btn-success ">Upload</Button>
+                    <Button class="btn btn-success " (click)="upload()">Upload</Button>
                    </div>
                 </form>
             </div>

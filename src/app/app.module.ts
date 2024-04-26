@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -21,9 +21,14 @@ import { ChartComponent } from './chart/chart.component';
 import { WasteAdminComponent } from './waste-admin/waste-admin.component';
 import { ComplaintAdminComponent } from './complaint-admin/complaint-admin.component';
 import { AllusersAdminComponent } from './allusers-admin/allusers-admin.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http'
 import { ToastrModule } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SearchPipePipe } from './Search/search-pipe.pipe';
+import { SearchPipe } from './SearchTwo/search.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,15 +48,25 @@ import { ToastrModule } from 'ngx-toastr';
     ChartComponent,
     WasteAdminComponent,
     ComplaintAdminComponent,
-    AllusersAdminComponent
+    AllusersAdminComponent,
+    SearchPipePipe,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HighchartsChartModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot(),
-    HttpClientModule
+    BrowserAnimationsModule,
+    CommonModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+    }),
+    HttpClientModule,
+    MatProgressSpinnerModule,
+   FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../service/api.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -15,7 +16,7 @@ registerForm = this.fb.group({
   password:['',[Validators.required,Validators.pattern('[a-zA-Z0-9]*')]]
 
 })
- constructor(private fb:FormBuilder,private api:ApiService,private router:Router){}
+ constructor(private fb:FormBuilder,private api:ApiService,private router:Router,private toaster:ToastrService){}
 
  register(){
   if (this.registerForm.valid) {
@@ -25,14 +26,14 @@ registerForm = this.fb.group({
     const user = {username,email,password}
     this.api.registerAPI(user).subscribe({
       next:(res:any)=>{
-        alert(`${res.username} succesfully registered`)
+        this.toaster.success(`${res.username} succesfully registered`)
         this.router.navigateByUrl('/login')
       },error:(reason:any)=>{
-        alert(reason.error)
+        this.toaster.warning(reason.error)
       }
     })
   } else {
-    alert("invalid form")
+    this.toaster.warning("INVALID FORM!!!!!!!")
   }
  }
 }

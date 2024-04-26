@@ -1,24 +1,46 @@
 <div style="height: auto" class="w-100 d-flex">
-  <div style="width: 250px; height: 90vh;" class=" me-5 mt-5 border ">
+  <div style="width: 250px; height: 100vh" class="me-5 mt-5 border">
     <h3 class="m-2">Complaints</h3>
-   <div class="mt-5 p-2">
-    <label for="search">Search :</label>
-      <input placeholder="Search complaints" type="text" class="form-control">
-   </div>
+    <div class="mt-5 p-2">
+      <label for="search">Search :</label>
+      <input placeholder="Search complaints" type="text" class="form-control" [(ngModel)]="searchKey" >
+    </div>
   </div>
-          <div class="row container mt-5">
-            
-            <div class="col-lg-6 mt-5">
-                <div class="card mt-5 p-3 border-dark" style="width: 900px;"> 
-                    <div class="card-body">
-                        <h4>Heading</h4>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                    <div class="d-flex  justify-content-end  align-items-start">
-                        <button class="btn btn-danger me-3">Status</button>
-                        <button class="btn btn-outline-dark "><i class="fa-solid fa-xmark"></i></button>
-                    </div>
-                  </div>
+  <div class="row container mt-5 mb-4">
+    <div class="col-lg-12 mt-5">
+      <div *ngIf="alluserComplaints.length == 0" class="d-flex justify-content-center align-items-center flex-column">
+        <h2 class="text-center text-danger fw-bold">No Complaints</h2>
+      </div>
+      <div *ngFor="let complaint of alluserComplaints | searchPipe : searchKey" class="card mt-5 p-3  shadow rounded " style="width: 900px">
+     <div class="row">
+         <div class="col-lg-6">
+           <div class="">
+              <div>
+                <button class="btn btn-outline-dark m-3">
+                  Complaint ID:{{ complaint.complaintId }}
+                </button>
+              </div>
+              <img class="mt-5" height="200px" width="200px" [src]="SERVER_URL + '/' + complaint.image"
+                [alt]="complaint.subject" />
+           </div>
+         </div>
+          <div class="col-lg-6 d-flex justify-content-between flex-column ">
+            <div class="card-body">
+              <h4>{{ complaint.subject }}</h4>
+              <hr />
+              <img class="card-img" src="" alt="" />
+              <p class="card-text">{{ complaint.complaint }}</p>
+            </div>
+            <div class="d-flex justify-content-end align-items-start">
+              <button  class="btn btn-outline-dark  me-3">Status</button>
+              <p>Status: {{ complaint.pendingStatus ? 'Resolved' : 'Pending' }}</p>
+              <button (click)="removeComplaint(complaint.complaintId)" class="btn btn-outline-danger ms-2">
+                <i class="fa-solid fa-trash me-2"></i> Delete
+              </button>
             </div>
           </div>
+     </div>
+      </div>
+    </div>
   </div>
+</div>

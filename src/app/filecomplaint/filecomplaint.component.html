@@ -1,5 +1,5 @@
 
-<div style="height: 90vh;" class="d-flex mt-5">
+<div style="height: auto;" class="d-flex mt-5">
     <div class="container mt-5">
         <div class="row  d-flex justify-content-center  align-items-center ">
             <div class="col-lg-6 d-flex justify-content-center  align-items-center ">
@@ -8,18 +8,18 @@
             <div class="col-lg-6">
                 <form [formGroup]="complaintForm" class="p-5  shadow  rounded">
                     <h3 class="text-center text-capitalize ">File a complaint</h3>
-                    <div class="mb-2">
-                        <label for="subject">Complaint ID</label>
-                        <input formControlName="complaintId" class="form-control" type="text" name="complaintId" id="complaintId">
-                   </div>
+                    
                     <div class="mb-2">
                          <label for="subject">Subject</label>
                          <input formControlName="subject" class="form-control" type="text" name="subject" id="subject">
                     </div>
+                    <div *ngIf="complaintForm.get('subject')?.errors && complaintForm.get('subject')?.touched" class="mb-3 text-danger" >invalid subject</div>
+
                     <div class="mb-2">
                          <label for="subject">complaint</label>
-                         <textarea formControlName="complaint" name="complaint" id="complaint" cols="60" rows="5"></textarea>
+                         <textarea formControlName="complaint"  name="complaint" id="complaint" cols="60" rows="5" ></textarea>
                     </div>
+                    <div *ngIf="complaintForm.get('complaint')?.errors && complaintForm.get('complaint')?.touched" class="mb-3 text-danger" >invalid complaint</div>
                     <div class="mb-2 d-flex flex-column">
                         <label for="subject" class="mb-1 ">If any relavent images :</label>
                        <input (change)="imageUpload($event)" name="image" type="file" id="image" placeholder="image">
@@ -29,6 +29,7 @@
                     <button  type="submit" (click)="upload()" class="btn btn-success ">Upload</button>
                    </div>
                 </form>
+                
             </div>
         </div>
     </div>

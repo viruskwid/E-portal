@@ -3,24 +3,23 @@
         <h3 class="m-2">Waste Report</h3>
      <div class="mt-5 p-2">
       <label for="search">Search :</label>
-        <input placeholder="Search waste report" type="text" class="form-control">
+        <input placeholder="Search waste report" type="text" class="form-control" [(ngModel)]="searchKey">
      </div>
     </div>
             <div class="row container mt-5">
-              
-              <div class="col-lg-6 mt-5">
-                  <div class="card mt-5 p-3 d-flex flex-row" style="width: 900px;">
-                    <img height="150px" width="180px" src="https://cdn.pixabay.com/photo/2017/09/08/18/20/garbage-2729608_640.jpg" alt="">
-                     <div>
-                          <div class="card-body">
-                              <h4>Heading</h4>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          </div>
-                          <div class="d-flex  justify-content-end  align-items-start">
-                              <button class="btn btn-danger me-3">Status</button>
-                              <button class="btn btn-outline-dark "><i class="fa-solid fa-xmark"></i></button>
-                          </div>
-                     </div>
+              <div *ngFor="let waste of userWaste | searchPipe : searchKey" class="col-lg-3 mt-5">
+                   
+                    <div class="card border-0  shadow " style="width: 18rem;">
+                      <div class="d-flex justify-content-center rounded mt-3 mb-2"><img class="rounded shadow " height="150px" width="240px" [src]="SERVER_URL + '/' + waste.image" [alt]="waste.date"></div>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Type: {{waste.type}}</li>
+                        <li class="list-group-item"><i class="fa-solid fa-location-dot me-2"></i> {{waste.location}} </li>
+                        <li class="list-group-item"><i class="fa-solid fa-calendar-days me-2 "></i>{{waste.date}}</li>
+                      </ul>
+                      <div class="d-flex  justify-content-between m-3">
+                        <button class="btn btn-outline-dark  me-3">Status</button>
+                        <button class="btn btn-outline-danger  " (click)="removeWaste(waste.wasteId)"><i class="fa-solid fa-trash me-2"></i>Delete</button>
+                    </div>
                     </div>
               </div>
             </div>

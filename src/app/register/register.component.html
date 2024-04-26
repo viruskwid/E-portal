@@ -12,18 +12,18 @@
                      <label for="exampleInputName" class="form-label">Name</label>
                      <input name="username" formControlName="username" placeholder="Enter Username" type="text" class="form-control " id="exampleInputName" >
                    </div>
-                   <div *ngIf="registerForm.get('username')?.errors && registerForm.get('username')?.touched" class="mb-3 text-danger" >invalid username</div>
+                   <div *ngIf="registerForm.get('username')?.errors && registerForm.get('username')?.touched" class="text-danger" >invalid username</div>
                    <div class="mb-3">
                      <label for="exampleInputEmail1" class="form-label">Email address</label>
                      <input name="email" formControlName="email" placeholder="Enter Email"  type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                    </div>
-                   <div *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched" class="mb-3 text-danger" >invalid Email</div>
+                   <div *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched" class="text-danger" >invalid Email</div>
                    <div class="mb-3">
                      <label for="exampleInputPassword1" class="form-label">Password</label>
-                     <input name="password" formControlName="password" type="password" class="form-control" id="exampleInputPassword1" >
+                     <input name="password" formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter a Strong Password">
                    </div>
-                   <div *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched" class="mb-3 text-danger" >invalid Password</div>
+                   <div *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched" class=" text-danger" >invalid Password</div>
                    <div class="text-center mt-2">
                        <button (click)="register()" type="submit" class="btn btn-outline-success  text-center ">Register</button>
                        <h6 class="text-success mt-2 ">Already have Account? <a class="text-success" routerLink="/login">Login</a></h6>

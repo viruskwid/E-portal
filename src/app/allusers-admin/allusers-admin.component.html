@@ -1,21 +1,23 @@
-<div style="height: auto;" class="d-flex flex-column mt-5 align-items-center justify-content-center ">
+<div style="height: 100vh;" class="d-flex flex-column mt-5 align-items-center ">
     <h2 class="mt-5 text-center ">All Users List</h2>
 <div class="container-fluid mb-5 ">
     
         <table class="table border text-center ">
             <thead>
               <tr>
+                <th scope="col">No</th>
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
-                <th scope="col">Place</th>
+                <th scope="col">Email</th>
                 <th scope="col">No of reports</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th class="border ">1</th>
-                <th class="border">Amal</th>
-                <th class="border">Aluva</th>
+              <tr *ngFor="let user of allUser ; let i = index">
+                <th class="border ">{{i+1}}</th>
+                <th class="border">{{user._id}}</th>
+                <th class="border">{{user.username}}</th>
+                <th class="border">{{user.email}}</th>
                 <th class="border">23</th>
                 <th class="border "><button class="btn btn-danger">Block</button></th>
               </tr>
