@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-home.component.css']
 })
 export class UserHomeComponent {
+  openExternalUrl(): void {
+    window.location.href = 'https://angular-e-cart-front.vercel.app/';
+  }
 
 }
