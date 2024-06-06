@@ -21,7 +21,7 @@
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button class="btn btn-danger me-3">Reject</button>
               <button class="btn btn-info me-3">Pending</button>
-              <button (click)="updateStatus(sub.complaintId)" class="btn btn-success me-3">Completed</button>
+              <button (click)="updateStatus(sub)" class="btn btn-success me-3">Completed</button>
             </div>
           </div>
         </div>
@@ -44,7 +44,13 @@
                 <td class="border-2">{{complaint.subject}}</td>
                 <td class="border-2 b">{{complaint.username}}</td>
                 <td class="border-2">{{complaint.userId}}</td>
-                <td class="border-2 mt-3 "><button type="button" class="btn btn-outline-dark " data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="details(complaint)">View More</button></td>
+                <td class="border-2 mt-3 "><button type="button" class="btn btn-outline-dark position-relative" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="details(complaint)">View More   <span *ngIf="complaint.pendingStatus==true" class="position-absolute top-0 start-100 translate-middle p-2 bg-success  border border-light rounded-circle">
+                  <span class="visually-hidden">New alerts</span>
+                </span>
+                <span *ngIf="complaint.pendingStatus==false" class="position-absolute top-0 start-100 translate-middle p-2 bg-danger  border border-light rounded-circle">
+                  <span class="visually-hidden">New alerts</span>
+                </span>
+              </button></td>
             </tr>
         </tbody>
         <thead class="shadow border text-center mb-5 bg-success text-light ">

@@ -10,8 +10,9 @@ import { ToastrService } from 'ngx-toastr';
 export class ComplaintAdminComponent implements OnInit{
   allcomplaints:any=[]
   status:any
+  pending:boolean=false
   sub:any=[]
-  SERVER_URL="http://localhost:3000/uploads"
+  SERVER_URL="https://eportalserver.onrender.com/uploads"
 constructor(private api:ApiService,private toaster:ToastrService){}
 
 ngOnInit(): void {
@@ -31,14 +32,29 @@ details(complaint:any){
   console.log(this.sub);
   
 }
-updateStatus(complaintId: any) {
-  this.api.updateComplaintStatus(complaintId).subscribe({
+updateStatus(sub: any) {
+  const { complaint, complaintId, image, subject, userId, username } = sub;
+  const pendingStatus = true;
+  console.log(subject);
+  const reqBody = new FormData();
+  reqBody.append("username", username);
+  reqBody.append("subject", subject);
+  reqBody.append("complaint", complaint);
+  reqBody.append("image", image);
+  reqBody.append("userId", userId);
+  reqBody.append("complaintId", complaintId);
+  reqBody.append("pendingStatus", pendingStatus.toString());
+  this.api.editComplaintsAPI(complaintId,reqBody).subscribe({
     next:(res:any)=>{
-      this.toaster.success("approved")
+      this.pending=true
+      this.toaster.success(`${complaintId} is approved`)
+      this.allComplaints()
     },
-    error:(reason:any)=>{
-      this.toaster.warning(reason)
-    }
+    error(err:any) {
+      console.log(err);
+      
+    },
   })
+
 }
 }

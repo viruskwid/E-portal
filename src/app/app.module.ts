@@ -28,6 +28,7 @@ import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SearchPipePipe } from './Search/search-pipe.pipe';
 import { SearchPipe } from './SearchTwo/search.pipe';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { SearchPipe } from './SearchTwo/search.pipe';
     ComplaintAdminComponent,
     AllusersAdminComponent,
     SearchPipePipe,
-    SearchPipe
+    SearchPipe,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

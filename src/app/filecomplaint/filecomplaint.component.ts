@@ -14,10 +14,10 @@ export class FilecomplaintComponent implements OnInit {
   formDatas:any={}
   userName:any
   uniId:any
-  customPattern = /^[a-zA-Z0-9.,\/?"'[\]{}\\|!` ]*$/;
+  customPattern = /^[a-zA-Z0-9.,\/?"'[\]{}\\|!` ]*$/
  complaintForm = this.fb.group({
    subject:['',[Validators.required,Validators.pattern(this.customPattern)]],
-   complaint: ['', [Validators.required, Validators.pattern(this.customPattern)]],
+   complaint: ['', [Validators.required]],
 
  })
   

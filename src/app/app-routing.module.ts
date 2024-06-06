@@ -13,6 +13,7 @@ import { WasteStatusComponent } from './waste-status/waste-status.component';
 import { WasteAdminComponent } from './waste-admin/waste-admin.component';
 import { ComplaintAdminComponent } from './complaint-admin/complaint-admin.component';
 import { AllusersAdminComponent } from './allusers-admin/allusers-admin.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   {path:"login" ,component:LoginComponent},
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path:"waste-admin", component:WasteAdminComponent},
   {path:"complaint-admin", component:ComplaintAdminComponent},
   {path:"allusers", component:AllusersAdminComponent}, 
+  {path:"about", component:AboutComponent}, 
   {path:"**", redirectTo:""}
 
 ];

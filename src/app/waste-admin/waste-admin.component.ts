@@ -9,7 +9,7 @@ import { ApiService } from '../service/api.service';
 export class WasteAdminComponent implements OnInit {
   wasteData: any; // Declare object variable to hold the response
   sub:any=[]
-  SERVER_URL = 'http://localhost:3000/uploads';
+  SERVER_URL = 'https://eportalserver.onrender.com/uploads';
 
   constructor(private api: ApiService) {}
 

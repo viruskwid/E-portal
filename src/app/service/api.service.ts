@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ApiService {
- SERVER_URL="http://localhost:3000"
+ SERVER_URL="https://eportalserver.onrender.com"
   constructor(private http:HttpClient) { }
 
  //register
@@ -56,5 +56,8 @@ removeWasteAPI(id:any){
 }
 allUserAPI(){
   return this.http.get(`${this.SERVER_URL}/all-users`,this.appendTokenHeader())
+}
+editComplaintsAPI(complaintId:any,reqBody:any){
+  return this.http.put(`${this.SERVER_URL}/approve/${complaintId}`,reqBody,this.appendTokenHeader())
 }
 }

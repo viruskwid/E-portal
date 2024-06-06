@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ComplaintsatusComponent implements OnInit {
   searchKey:string=""
   alluserComplaints: any = [];
-  SERVER_URL = 'http://localhost:3000/uploads';
+  SERVER_URL = 'https://eportalserver.onrender.com/uploads';
   constructor(private api: ApiService, private toaster: ToastrService) {}
 
   ngOnInit(): void {

@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 export class WasteStatusComponent implements OnInit {
   searchKey:string=""
   userWaste: any;
-  SERVER_URL = 'http://localhost:3000/uploads';
+  SERVER_URL = 'https://eportalserver.onrender.com/uploads';
 
   constructor(private api: ApiService,private toaster:ToastrService) {}
 

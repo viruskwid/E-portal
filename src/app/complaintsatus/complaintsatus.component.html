@@ -32,8 +32,8 @@
               <p class="card-text">{{ complaint.complaint }}</p>
             </div>
             <div class="d-flex justify-content-end align-items-start">
-              <button  class="btn btn-outline-dark  me-3">Status</button>
-              <p>Status: {{ complaint.pendingStatus ? 'Resolved' : 'Pending' }}</p>
+              <button  class=" {{ complaint.pendingStatus ? 'btn btn-success shadow  me-3' : 'btn btn-warning shadow  me-3' }}"> {{ complaint.pendingStatus ? 'Resolved' : 'Pending' }}</button>
+            
               <button (click)="removeComplaint(complaint.complaintId)" class="btn btn-outline-danger ms-2">
                 <i class="fa-solid fa-trash me-2"></i> Delete
               </button>
